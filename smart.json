@@ -1,0 +1,8 @@
+{
+  "packages": {
+    "meteor-file": {
+      "git": "git@github.com:lindleycb/meteor-file.git"
+    },
+    "bootstrap-3": {}
+  }
+}

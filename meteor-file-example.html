@@ -1,0 +1,56 @@
+<head>
+  <title>File Upload Progress</title>
+</head>
+
+<body>
+  <div style="margin: 10px 0px;"></div>
+  <div class="container">
+    {{> fileUpload}}
+  </div>
+</body>
+
+<template name="fileUpload">
+  <form class="well">
+    <legend>
+      <h3>Upload Files</h3>
+    </legend>
+
+    {{#FileUploader method="uploadFile"}}
+      <input type="file" multiple />
+      <br/>
+      <table class="table">
+        <thead>
+          <th>Name</th>
+          <th>Size</th>
+          <th style="width: 150px;">Upload Progress</th>
+          <th style="width: 300px;">Status</th>
+        </thead>
+
+        <tbody>
+          {{#each files}}
+            {{> fileUploadRow}}
+          {{else}}
+            <tr><td colspan="4"><h5>No files selected</h5></td></tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{/FileUploader}}
+  </form>
+</template>
+
+<template name="fileUploadRow">
+  <tr>
+    <td>{{name}}</td>
+    <td>{{humanize size}}</td>
+    <td>
+      <div class="progress progress-striped">
+        <div class="progress-bar {{uploadCompleteClass}}" style="width: {{uploadProgress}}%">
+          <span style="padding-left: 2px; float: left; color: #000;">
+            {{uploadProgress}}%
+          </span>
+        </div>
+      </div>
+    </td>
+    <td>{{status}}</td>
+  </tr>
+</template>
